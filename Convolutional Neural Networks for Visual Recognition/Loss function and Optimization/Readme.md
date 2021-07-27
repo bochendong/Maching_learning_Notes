@@ -68,7 +68,9 @@ $Q$: Suppose we found a $W$ such that $L = 0$, is this $W$ unique?
 
 $A$: No, $2W$ also has $L = 0$. 
 
-![w0](./w0.png)
+<div align=center>
+    <img src ="w0.png" width="600" height ="300"/>  
+</div>
 
 $Q$: How is the classifier to choose between these different version of W all achieve zero loss?
 
@@ -91,7 +93,10 @@ L_i &= - \log P(Y = y_i|X=x_i)\\
 $$
 
 ## Example:
-![softmax](./softmax.png)
+
+<div align=center>
+    <img src ="softmax.png" width="600" height ="280"/>  
+</div>
 
 ## Feature:
 1. Softmax encorage the classifier to pile more probability mass on the correct class and push the score on the correct class to infity and the score of the incorrect class down towards negative infity.
@@ -107,7 +112,9 @@ $$
 L(W) = \underbrace{\frac{1}{N}\sum_iL_i(f(x_i, w),y_i)}_{Data Loss} + \underbrace{\lambda R(W)}_{Regilarization}
 $$
 
-![reg2](./reg2.png)
+<div align=center>
+    <img src ="reg2.png" width="600" height ="280"/>  
+</div>
 ## Meaning of Regularization:
 Adding the Regularization trem allow the model still has access to more complex models(W), but we add this soft constraint saying that if we want to use this complex models, we need to overcome this penalty. The $\lambda$ is the penalty strength.
 
@@ -150,7 +157,9 @@ $$
 In multiple dimensions, the gradient is the vector along each dimension.
 
 - Numerical Gradient:
-![gradient](./gradient.png)
+- <div align=center>
+    <img src ="gradient.png" width="600" height ="300"/>  
+</div>
 - Analytic Gradient:
 $$
 \left \{

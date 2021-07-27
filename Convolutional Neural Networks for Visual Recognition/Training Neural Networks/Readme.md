@@ -6,8 +6,9 @@
 # Activation Functions
 
 For any particular layer, we have the data coming in, we multiply by weight and then we will pass this through an activation function or nonlinearity.
-![act](act1.png)
-
+<div align=center>
+    <img src ="act1.png" width="600" height ="280"/>  
+</div>
 ## Sigmoid:
 
 $$
@@ -29,7 +30,10 @@ $$
 
 ### Problems:
 * Saturate neurons "kill" the gradients
-![sig1](sig1.png)
+    <div align=center>
+        <img src ="sig1.png" width="500" height ="160"/>  
+    </div>
+
     - Consider when x = 10, then $\frac{d \sigma(x)}{dx} = (\frac{1}{1 + e ^{-10}})(1 - \frac{1}{1 + e ^{-10}}) = 4.5\times 10 ^{-5}$. We chain any upstream gradient comming down, it will multiply something near zero. Then we will get a very small gradient flowing back downwards.
 * Sigmoid output are not zero-centered
 ![act](act1.png)
@@ -93,8 +97,9 @@ $$
 ###  Problems:
 * Not zero-centered output
 * ReLu kill the gradient when $x < 0$
-![drelu](drelu.png)
-
+<div align=center>
+    <img src ="drelu.png" width="600" height ="300"/>
+</div>
 
 ## Leaky ReLu
 $$
@@ -119,7 +124,9 @@ $$
 # Data Preprocessing
 
 Some standard types of preprocessing is, you take the orginal data, and you want to zero mean them, or you will want to normalized them.
-![dataposs](dataposs.png)
+<div align=center>
+    <img src ="dataposs.png" width="600" height ="250"/>
+</div>
 
 ## In practice for images: center only
 We don't normalize the pixel value so much, because for images, at each location, you already have relatively comparable scale and distribution.
