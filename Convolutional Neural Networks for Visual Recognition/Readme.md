@@ -1,8 +1,8 @@
 # Machine Learning Notes (cs231)
-* [Image Classification](https://github.com/bochendong/ML_Notes/tree/main/Image%20Classificstion)
-* [Loss function and Optimization](https://github.com/bochendong/ML_Notes/tree/main/Loss%20function%20and%20Optimization)
-* [Introduction to Neural Networks](https://github.com/bochendong/ML_Notes/tree/main/Introduction%20to%20Neural%20Networks)
-* [Convolutional Neural Network](https://github.com/bochendong/ML_Notes/tree/main/Convolutional%20Neural%20Network)
+* [Image Classification](https://github.com/bochendong/Maching_learning_Notes/tree/main/Convolutional%20Neural%20Networks%20for%20Visual%20Recognition/Image%20Classificstion)
+* [Loss function and Optimization](https://github.com/bochendong/Maching_learning_Notes/tree/main/Convolutional%20Neural%20Networks%20for%20Visual%20Recognition/Loss%20function%20and%20Optimization)
+* [Introduction to Neural Networks](https://github.com/bochendong/Maching_learning_Notes/tree/main/Convolutional%20Neural%20Networks%20for%20Visual%20Recognition/Introduction%20to%20Neural%20Networks)
+* [Convolutional Neural Network](https://github.com/bochendong/Maching_learning_Notes/tree/main/Convolutional%20Neural%20Networks%20for%20Visual%20Recognition/Convolutional%20Neural%20Network)
 * [Training Neural Networks](https://github.com/bochendong/ML_Notes/tree/main/Training%20Neural%20Networks)
 
 Week Question:
