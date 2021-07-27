@@ -11,7 +11,9 @@
 2. Use Machine Learning to train a classifier
 3. Evaluate the classifier on new images
 
-![dda](./dda.png)
+<div align=center>
+    <img src ="dda.png" width="600" height ="160"/>  
+</div>
 (Example data set: CIFAR10)
 
 # Nearest Neighbor Classifier:
@@ -26,7 +28,9 @@
 # K-Nearest Neighbors Classifier:
 
 Instead of copying label from nearest neighbor, take the majority vote from K closest points.
-![knn](./knn.png)
+<div align=center>
+    <img src ="knn.png" width="600" height ="200"/>  
+</div>
 
 ### Consider: 
 
@@ -45,23 +49,26 @@ $$
 $$
 d_2(I_1,I_2) = \sqrt{{\underbrace{(2 - 4)}_{x}}^2 + {\underbrace{(3 - 2)}_{y}}^2 }
 $$
+<div align=center>
+    <img src ="knnl2.png" width="600" height ="250"/>  
+</div>
 
-
-![knnl2](./knnl2.png)
 
 
 ## Disadavntages
 1. KNN is very problem dependent (i.e. what is the best k to use and what is the best distance to choose).
 2. KNN on image is very bad, L1 and L2 distance are really not a good way to measure distance between images.
 3. If we expect KNN has a good proformance, then we need our training examples to cover the space densely. Which means the number of training example grows exponential in the dimension.
-
-![knnd](./knnd.png)
-
+<div align=center>
+    <img src ="knnd.png" width="600" height ="250"/>  
+</div>
 
 # Linear Classifier:
 
 The Linear Classifier is like a parametric model, which has two different parameters. It will take the cat image on the left as x, and a w called weights.
-![cat](./cat.png)
+<div align=center>
+    <img src ="cat.png" width="600" height ="250"/>  
+</div>
 
 ## What is the function actually doing?
 
@@ -69,11 +76,14 @@ The Linear Classifier is like a parametric model, which has two different parame
 - The weight matrix is like a template, compute the dot product is like compare the similarity between the template and this image.
 - The bias is like b in y = kx + b, which will give us some data independent preferences for some class over another. Image if your data set is unbalanced and has many more cats than dogs, then the bias term corresponding to cat will be higher than other ones. 
 
-![train](./train.png)
+<div align=center>
+    <img src ="train.png" width="600" height ="260"/>  
+</div>
 
 ## Limitation of Linear Classifier：
-
-![hc](./hc.png)
+<div align=center>
+    <img src ="hc.png" width="600" height ="260"/>  
+</div>
 
 # Regression
 

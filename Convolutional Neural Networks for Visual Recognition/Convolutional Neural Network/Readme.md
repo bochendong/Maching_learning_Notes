@@ -4,8 +4,9 @@
 * [Pooling Layer](#pooling-layer)
 
 # Fully Connected Layer
-![fc](fc.png)
-
+<div align=center>
+    <img src ="fc.png" width="600" height ="200"/>  
+</div>
 $$
 W = 
 \begin{bmatrix}
@@ -30,7 +31,10 @@ $$
 
 # Convolution Layer
 ## Filter
-![conv2](conv2.png)
+<div align=center>
+    <img src ="conv2.png" width="600" height ="300"/>  
+</div>
+
 ## Padding
 Common to see CONV layers with stride 1, filter of size $F\times F$, and zero padding with $\frac{F - 1 }{2}$.
 ### Example:
@@ -105,9 +109,14 @@ $$
 ![conv3](conv3.png)
 
 ## Activation map
-![am](am.png)
+<div align=center>
+    <img src ="am.png" width="600" height ="300"/>  
+</div>
+
 ### If we had six $5\times5$ filters. we'll get six separate activation maps:
-![sa](sa.png)
+<div align=center>
+    <img src ="sa.png" width="600" height ="300"/>  
+</div>
 
 ## Common settings of Convolution Layer:
 
@@ -120,10 +129,12 @@ $$
 # Pooling Layer
 ### - Makes the representations smaller and more manageable
 ### - Operates over each activation map independently:
-
-![pool](pl.png)
-![pool](p2.png)
-
+<div align=center>
+    <img src ="pl.png" width="400" height ="300"/>  
+</div>
+<div align=center>
+    <img src ="p2.png" width="600" height ="300"/>  
+</div>
 ## Common settings of Pooling Layer:
 
 * F = 2, S = 2
