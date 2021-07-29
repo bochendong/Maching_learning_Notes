@@ -7,6 +7,7 @@
 <div align=center>
     <img src ="fc.png" width="600" height ="200"/>  
 </div>
+
 $$
 W = 
 \begin{bmatrix}

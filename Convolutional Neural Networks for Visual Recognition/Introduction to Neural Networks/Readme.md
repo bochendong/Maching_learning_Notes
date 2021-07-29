@@ -5,12 +5,16 @@
 
 # Computauional Graphs
 ### We can use this graph to represent any function, where the nodes of the graph are strps of computation.
-![cg](cg.png)
-
+<div align=center>
+    <img src ="cg.png" width="600" height ="250"/>  
+</div>
 
 # Backpropagation
 ### Recursively use the chain rule to calculate the gradient with respect to every variable in the computauional graph.
-![gra](gra.png)
+
+<div align=center>
+    <img src ="gra.png" width="600" height ="300"/>  
+</div>
 
 ## Chain Rule: 
 ### Let $f(x, y , z) = (x +y)z$, compute $\frac{\partial f}{\partial x}$, $\frac{\partial f}{\partial y}$, $\frac{\partial f}{\partial z}$?
@@ -30,7 +34,9 @@ $$
 
 ## Example: What is $\frac{\partial L}{\partial x}$?
 
-![e2](e2.png)
+<div align=center>
+    <img src ="e2.png" width="500" height ="100"/>  
+</div>
 
 $\text{Let } M = -x, Q = e ^{M}, P = Q + 1,  L = \frac{1}{P}$, then
 $$
@@ -59,7 +65,10 @@ $$
 \end{aligned}
 $$
 
-![e3](e3.png)
+<div align=center>
+    <img src ="e3.png" width="500" height ="270"/>  
+</div>
+
 $\text{Let } P = e ^{W_0}, Q = \frac{1}{W_1},  L = PQ$, then:
 
 $$
@@ -96,19 +105,31 @@ $$
 ## Gates:
 
 ### Add Gate: gradient distributor
-![gate](gate.png)
+<div align=center>
+    <img src ="gate.png" width="500" height ="270"/>  
+</div>
+
 When we pass through the addition gate, it took the upstream gradient and just distributed it (pass the exact same thing to both of the branches that were connected).
 
 ### Mult Gate: gradient switcher
-![gate](mult.png)
+<div align=center>
+    <img src ="mult.png" width="500" height ="270"/>  
+</div>
+
 We take the upstream gradient and we scale it by the value of the other branch.
 
 ### Max Gate: gradient router
-![gate](max.png)
+<div align=center>
+    <img src ="max.png" width="500" height ="270"/>  
+</div>
+
 The max gate will take the gradient and route it to one of the branches. (If we look at our forward pass, only the value that was the maximum got passed down to the rest of the computational graph).
 
 ### Sigmoid Gate:
-![sig](sig.png)
+<div align=center>
+    <img src ="sig.png" width="500" height ="210"/>  
+</div>
+
 ### Sigmoid Function:
 
 $$
@@ -136,7 +157,10 @@ x =
 0.4
 \end{bmatrix}
 $$
-![vec](vec.png)
+
+<div align=center>
+    <img src ="vec.png" width="500" height ="300"/>  
+</div>
 
 ### Forward pass:
 $$
@@ -163,7 +187,10 @@ w_{21} x_1 + w_{22} x_2
 \| P\|^2 &= 0.22 ^2 + 0.26^2 = 0.116
 \end{aligned}
 $$
-![vec2](vec2.png)
+<div align=center>
+    <img src ="vec2.png" width="500" height ="160"/>  
+</div>
+
 
 ### Backward pass:
 $$
@@ -192,13 +219,27 @@ $$
 
 \end{aligned}
 $$
-![vecback](vecback.png)
+
+<div align=center>
+    <img src ="vecback.png" width="500" height ="180"/>  
+</div>
+
 # Neural Network
-![neu](neural.png)
+
+<div align=center>
+    <img src ="neural.png" width="600" height ="300"/>  
+</div>
+
 ## Activation functions:
-![actf](actf.png)
+<div align=center>
+    <img src ="actf.png" width="600" height ="300"/>  
+</div>
+
 ## Architectures:
-![arch](arch.png)
+<div align=center>
+    <img src ="arch.png" width="600" height ="300"/>  
+</div>
+
 # Matrix Derivative
 
 ## Vector and scalar
