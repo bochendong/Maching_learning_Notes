@@ -47,8 +47,9 @@ def sample(self, S):
 ## Learn
 Update the Q table by algorithm temporal difference:
 <div align=center>
-     <img src ="Temporal Difference.png" width="340" height ="50"/>
+     <img src ="Temporal Difference.png" width="400" height ="50"/>
 </div>
+
 ```python
  def learn(self, S, action, reward, S_prime, action_prime, done):
     predit_Q = self.Q[S, action]
