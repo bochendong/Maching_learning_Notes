@@ -3,11 +3,11 @@ This project apply sarsa algorithm on GYM clifwalking environment
 ## Agent Structure
 ```python
 def __init__(self, obs_n, act_n = 4, learning_rate=0.01, gamma=0.9, e_greed=0.1):
-        self.lr = learning_rate
-        self.gamma = gamma
-        self.epsilon = e_greed
-        self.act_n = act_n
-        self.Q = np.zeros((obs_n, act_n))
+    self.lr = learning_rate
+    self.gamma = gamma
+    self.epsilon = e_greed
+    self.act_n = act_n
+    self.Q = np.zeros((obs_n, act_n))
 ```
 ## Select action
 ```python
@@ -65,11 +65,6 @@ def run_episode(env, agent, render = False):
 ```python
 for episode in range(2000):
     run_episode(env, agent, is_render)
-
-    if episode % 20 == 0:
-        is_render = True
-    else:
-        is_render = False
 ```
 
 ![alt text](https://github.com/bochendong/Maching_learning_Notes/blob/main/Reinforcement%20Learning/Sarsa/show.gif)
