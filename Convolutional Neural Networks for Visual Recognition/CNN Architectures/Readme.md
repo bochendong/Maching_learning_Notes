@@ -115,6 +115,21 @@ Question:
 - A: We are doing all the zero padding to maintain the spatial dimensions.
 
 - Q: What is the problem of this?
-- A: 
+- A: The conv operation cost too much. Total: 854M ops.
+    1.  [1x1 conv, 128]: 28 x 28 x 128 x 1 x 1 x 256
+    2. [3x3 conv, 192]: 28 x 28 x 192 x 3 x 3 x 256
+    3. [5x5 conv, 96]: 28 x 28 x 96 x 5 x 5 x 256
+### Inception module:
+"Solution" to Native Inception module, use "bottleneck" layers that use 1x1 convs to reduce feature depth.
+
+- 1x1 convolutions:
+   <div align=center>
+    <img src ="1x1.png" width="400" height ="200"/>  
+</div>
+
+- Inception module with dimension reduction
+<div align=center>
+    <img src ="dr.png" width="400" height ="200"/>  
+</div>
 
 # ResNet
