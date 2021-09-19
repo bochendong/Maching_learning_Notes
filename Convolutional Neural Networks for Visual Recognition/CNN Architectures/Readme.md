@@ -1,6 +1,7 @@
 # CNN Architectures
 * [AlexNet](#AlexNet)
 * [VGGNet](#VGGNet)
+* [GoogLeNet](#GoogLeNet)
 
 # AlexNet
 <div align=center>
@@ -84,10 +85,51 @@ First layer (CONV1): 96 11x11 filters applied at stride 4
 
 ## Features:
 - What is the effective receptive field of three 3x3 conv (stride 1) layers?
-  - Stack of three 3x3 conv (stride 1) layers has same effective receptive field as one 7x7 conv layer
+  - Consider a 7x7 receptive field, we apply one 3x3 conv with stride 1, then the output size is 5x5. Next we apply another 3x3 conv, the output size will be 3x3. Hence, stack of three 3x3 conv (stride 1) layers has same effective receptive field as one 7x7 conv layer
 - Why use smaller filters? (3x3 conv) 
   - This the same receptive field but it is deeper, more non-linearities. And this has less parameters: 
 
 # GoogLeNet
+
+## Inception module:
+<div align=center>
+    <img src ="ince1.png" width="400" height ="200"/>  
+</div>
+
+### Native Inception module:
+<div align=center>
+    <img src ="ince2.png" width="400" height ="200"/>  
+</div>
+
+Apply parallel filter operations on the input from previous layer:
+- Multiple receptive field sizes from convolution (1x1, 3x3, 5x5)
+- Pooling operation (3x3)
+
+Question:
+- Q: What is the output size after filter concatenation?
+ <div align=center>
+    <img src ="ince3.png" width="400" height ="200"/>  
+</div>
+
+- Q: How are we get 28x28 for every convolution layer?
+- A: We are doing all the zero padding to maintain the spatial dimensions.
+
+- Q: What is the problem of this?
+- A: The conv operation cost too much. Total: 854M ops.
+    1.  [1x1 conv, 128]: 28 x 28 x 128 x 1 x 1 x 256
+    2. [3x3 conv, 192]: 28 x 28 x 192 x 3 x 3 x 256
+    3. [5x5 conv, 96]: 28 x 28 x 96 x 5 x 5 x 256
+### Inception module:
+"Solution" to Native Inception module, use "bottleneck" layers that use 1x1 convs to reduce feature depth.
+
+- 1x1 convolutions:
+   <div align=center>
+    <img src ="1x1.png" width="400" height ="200"/>  
+</div>
+
+- Inception module with dimension reduction
+<div align=center>
+    <img src ="dr.png" width="400" height ="200"/>  
+</div>
 
 # ResNet
