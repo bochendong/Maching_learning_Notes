@@ -83,5 +83,5 @@ $$
 &= 2 sup_{h\in\mathcal{H}} |R(h) − \hat{R}(h)|
 \end{aligned}
 $$
-- I Principle: Choose H in the way such that both $R(h^∗)$ and
+- Principle: Choose H in the way such that both $R(h^∗)$ and
 $sup_{h\in\mathcal{H}} |R(h) − \hat{R}(h)|$ are small.
