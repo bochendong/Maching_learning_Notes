@@ -8,3 +8,5 @@
   * [CNN Architectures](https://github.com/bochendong/Maching_learning_Notes/tree/main/Convolutional%20Neural%20Networks%20for%20Visual%20Recognition/CNN%20Architectures)
 * [Reinforcement Learning](https://github.com/bochendong/Maching_learning_Notes/tree/main/Reinforcement%20Learning)
   * [Given a Model of the World](https://github.com/bochendong/Maching_learning_Notes/tree/main/Reinforcement%20Learning/Given%20a%20Model%20of%20the%20world) 
+* [Theoretical Machine Learning](https://github.com/bochendong/Maching_learning_Notes/tree/main/Theoretical%20Foundations%20of%20Machine%20Learning)
+  * [Introduction to Theoretical Machine Learning](https://github.com/bochendong/Maching_learning_Notes/tree/main/Theoretical%20Foundations%20of%20Machine%20Learning/Introduction%20to%20Theoretical%20Machine%20Learning)
