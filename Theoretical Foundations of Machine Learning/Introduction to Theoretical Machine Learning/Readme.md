@@ -72,3 +72,16 @@ given finite number of training examples (non-asymptotic
 behavior)
 
 ## Generalization Bounds
+- Definition: given $\mathcal{H}$, the upper bound on $sup_{h\in\mathcal{H}} |R(h) − \hat{R}(h)|$.
+In other words, it holds for any $h \in \mathcal{H}$.
+
+- Let $h^*$ be the optimal hypothesis in $\mathcal{H}$. Then, if $h_0$ is the minimizer of $\hat{R}(h)$, we have:
+$$
+\begin{aligned}
+\mathcal{R}(h_0) - \mathcal{R}(h^*) &= \mathcal{R}(h_0) - \hat{R}(h_0) + \hat{R}(h_0) - \mathcal{R}(h^*)\\
+&\leq  \mathcal{R}(h_0) - \hat{R}(h_0) + \hat{R}(h^*) - \mathcal{R}(h^*)\\
+&= 2 sup_{h\in\mathcal{H}} |R(h) − \hat{R}(h)|
+\end{aligned}
+$$
+- I Principle: Choose H in the way such that both $R(h^∗)$ and
+$sup_{h\in\mathcal{H}} |R(h) − \hat{R}(h)|$ are small.
