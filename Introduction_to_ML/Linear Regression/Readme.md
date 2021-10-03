@@ -19,7 +19,7 @@ $$
 - Derivative of L1 Loss
 $$
 \begin{aligned}
-\frac{\partial L}{\partial b_0} &= -\sum_{i = 1}^n sgn(y_i - b_0 - b_1x_i)\\\
+\frac{\partial L}{\partial b_0} &= -\sum_{i = 1}^n sgn(y_i - b_0 - b_1x_i)\\
 \frac{\partial L}{\partial b_1} &= -\sum_{i = 1}^n sgn(y_i - b_0 - b_1x_i)x_i
     
 \end{aligned}
