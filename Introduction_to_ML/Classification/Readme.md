@@ -49,14 +49,14 @@ $$
 $$
 
 <div align=center>
-    <img src ="db.png" width="250" height ="120"/>  
+    <img src ="db.png" width="500" height ="240"/>  
 </div>
 
 
 ### Ranking
 - In some cases we can rank data samples from “most positive” to “most negative”
 <div align=center>
-    <img src ="rank.png" width="600" height ="100"/>  
+    <img src ="rank.png" width="500" height ="100"/>  
 </div>
 
 ### Probabilities
@@ -79,7 +79,7 @@ misclassifications with lower confidence
 - Say we have a dataset of 950 negative-class samples, 50 positive-class samples
 - If we lower our positive class threshold, our logistic regression accuracy changes
 <div align=center>
-    <img src ="acc.png" width="600" height ="250"/>  
+    <img src ="acc.png" width="600" height ="200"/>  
 </div>
 
 ## Measurement:
