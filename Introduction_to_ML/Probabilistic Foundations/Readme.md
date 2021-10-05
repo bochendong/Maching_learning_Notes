@@ -41,7 +41,7 @@ Pr(a \leq X \leq b) &= \int_a^b f_X(x) dx\\
 \right.
 $$
 <div align=center>
-    <img src ="pdf.png" width="500" height ="200"/>  
+    <img src ="PDF.png" width="500" height ="200"/>  
 </div>
 
 - Cumulative Distribution Function (CDF): for a continuous X, we define $F_X$ such that:
@@ -56,7 +56,7 @@ Pr(X\leq x) &= Pr(X\in(-\infty , x))
 \right.
 $$
 <div align=center>
-    <img src ="cdf2.png" width="500" height ="200"/>  
+    <img src ="CDF2.png" width="500" height ="200"/>  
 </div>
 
 
@@ -138,5 +138,5 @@ $$
 
 - Maximum Likelihood Estimation
 <div align=center>
-    <img src ="MLE.png" width="400" height ="150"/>  
+    <img src ="mLE.png" width="400" height ="150"/>  
 </div>
