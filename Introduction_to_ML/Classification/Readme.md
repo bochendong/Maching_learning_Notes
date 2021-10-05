@@ -133,6 +133,6 @@ Define $K$ classes numbered $1,\cdots,K$. Also define random variables $Y_1,\cdo
 for a class k observation (realization is $y$) $\rightarrow$ we call this one-hot encoding (ohe).
 
 <div align=center>
-    <img src ="ohe.png" width="400" height ="120"/>  
+    <img src ="ohe.png" width="600" height ="180"/>  
 </div>
 
