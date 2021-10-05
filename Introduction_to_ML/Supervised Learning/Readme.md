@@ -1,4 +1,11 @@
-## Training loss
+# Supervised Learning
+
+## 1. Choose a form for the function which relates inputs (x) to output (y)
+<div align=center>
+    <img src ="form.png" width="400" height ="200"/>  
+</div>
+
+## 2. Define training loss
 
 - Option 1: Minimize the sum of magnitudes (absolute values) of residuals: The L1-norm (also called LAD or Least Absolute Deviation)
 <div align=center>
@@ -10,8 +17,9 @@
     <img src ="L2.png" width="200" height ="40"/>  
 </div>
 
-## Minimizing the cost
+## 3. Find function in a form which gives the smallest training loss
 
+This is equivalent to finding the best parameters. We want to minimize the training loss by trying different parameter values.
 $$
 L2 = \sum_{i = 1}^n (y_i - b_0 - b_1x_i)^2\\
 L1 = \sum_{i = 1}^n |y_i - b_0 - b_1x_i |
@@ -31,6 +39,23 @@ $$
 \frac{\partial L}{\partial b_0} &= -2 \sum_{i = 1}^n(y_i - b_0 - b_1x_i)\\
 \frac{\partial L}{\partial b_1} &= -2 \sum_{i = 1}^n(y_i - b_0 - b_1x_i)x_i
     
+\end{aligned}
+$$
+
+- In Matrix form (Jacobian Matrix)
+$$
+\begin{aligned}
+
+\nabla_b L = 
+    \begin{bmatrix}
+        \frac{\partial L}{\partial b_0} \\
+        \frac{\partial L}{\partial b_1} \\
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        -2 \sum_i^n(y_i - b_0 - b_1x_i) \\
+        - 2\sum_i^n (y_i - b_0 - b_1x_i)x_i \\
+    \end{bmatrix}
 \end{aligned}
 $$
 
