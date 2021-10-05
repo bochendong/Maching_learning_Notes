@@ -138,5 +138,5 @@ $$
 
 - Maximum Likelihood Estimation
 <div align=center>
-    <img src ="mLE.png" width="600" height ="220"/>  
+    <img src ="mLE.png" width="600" height ="250"/>  
 </div>
