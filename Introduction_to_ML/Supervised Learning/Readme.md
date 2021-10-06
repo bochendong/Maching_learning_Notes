@@ -77,9 +77,16 @@ Note: OLS will always have the highest possible $R^2$ value.
 
 ## Code
 
-### Read csv file from dataframe
+### Data prepareation
 ```python
 df = pd.read_csv('iris.csv')
+
+y = df.loc[:,"sepal.length"].values
+x = df.loc[:,"petal.width"].values
+X = np.transpose(np.concatenate([[np.ones(len(df))], [x]]))
+
+x_grid = np.linspace(x.min(), x.max(), 10)
+Xnew = np.c_[np.ones(x_grid.size), x_grid]
 ```
 
 ### Make a prediction of a linear model
@@ -132,4 +139,15 @@ def linearModelFit(X,y,lossf = linearModelLossRSS):
     R2 = 1-(RSS/TSS)
     return (bpr,R2)
 ```
+
+### Plot
+
+```
+plt.scatter(df["petal.width"], df["sepal.length"])
+plt.plot(Xnew[:,1], yp, color='red', linestyle='--')
+plt.xlabel("petal.width")
+plt.ylabel("sepal.length")
+```
+
+
 
