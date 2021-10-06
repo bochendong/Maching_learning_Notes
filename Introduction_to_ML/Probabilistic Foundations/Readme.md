@@ -140,3 +140,20 @@ $$
 <div align=center>
     <img src ="mLE.png" width="600" height ="250"/>  
 </div>
+
+## Code
+
+For a Laplace distribution we can write the negative log likelihood as the following:
+
+$$\ell(y_1,y_2,...,y_n; \mu, \lambda)=-\sum_{i=1}^{n}-\log(2\lambda)-\frac{\lvert y_i-\mu \rvert}{\lambda}$$
+
+Write a function called `laplaceNegLogLikelihood` which takes a vector $\mathbf{y}$ and parameters $\mu$ and $\lambda$ and returns the negative log likelihood.
+
+```python
+def laplaceNegLogLikelihood(mu,lam,y):
+    # Compute and return nll (negative log likelihood)
+    n = y.shape[0]
+    nll = n * np.log(2 * lam) + np.sum(np.abs(y - mu)/lam)
+    return nll
+
+```
