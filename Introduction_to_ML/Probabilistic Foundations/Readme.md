@@ -143,6 +143,7 @@ $$
 
 ## Code
 
+### Calculate neg-log likelihood
 For a Laplace distribution we can write the negative log likelihood as the following:
 
 $$\ell(y_1,y_2,...,y_n; \mu, \lambda)=-\sum_{i=1}^{n}-\log(2\lambda)-\frac{\lvert y_i-\mu \rvert}{\lambda}$$
@@ -155,5 +156,37 @@ def laplaceNegLogLikelihood(mu,lam,y):
     n = y.shape[0]
     nll = n * np.log(2 * lam) + np.sum(np.abs(y - mu)/lam)
     return nll
+```
 
+The function should return the negative log likelihood, assuming that each element of  $\mathbf{y}$ is independent and identically distributed with parameter $\mu = \exp(\mathbf{X}\mathbf{b})$.
+
+```python
+def laplaceRegNegLogLikelihood(b, X, y):
+    # Compute mu 
+    mu = np.exp(np.dot(X, b))
+    # Compute negative log likelihood (let lam = 1)
+    nll = laplaceNegLogLikelihood(mu, 1, y)
+    return nll
+```
+
+### Model Predict
+The function should return predictions of the form $\widehat{\mathbf{y}} = \exp(\mathbf{X}\mathbf{b})$.
+
+```python
+def laplaceRegNegLogLikelihood(b, X, y):
+    #Compute yhat
+    yhat = np.exp(np.dot(X, b))
+    return yhat
+```
+
+### Model Fit
+The function should return a prediction for $\mathbf{b}$ which maximizes the Laplace Log Likelihood.
+
+```python
+b_init = np.zeros(X.shape[1])
+    # Start from b_init. Use so.minimize to get a prediction for b which maximizes Laplace Log Likelihood 
+    RES = so.minimize(laplaceRegNegLogLikelihood, b_init, args=(X,y), method="Powell", tol=1e-8)
+
+    # Note: Powell is a method to find the local minimum without taking the gradient
+    return RES.x
 ```
