@@ -14,7 +14,7 @@ $$
 \sum_{x \in \mathcal{X}}P_X(x) = 1
 $$
 <div align=center>
-    <img src ="pmf.png" width="500" height ="200"/>  
+    <img src ="img/pmf.png" width="500" height ="200"/>  
 </div>
 
 - Cumulative distribution function (CDF): for discrete X, $P_X(x)$ gives $Pr(X \leq x)$:
@@ -23,7 +23,7 @@ P_X(b) = \sum_{x \leq b} p_X(x)
 $$
 
 <div align=center>
-    <img src ="cdf.png" width="500" height ="200"/>  
+    <img src ="img/cdf.png" width="500" height ="200"/>  
 </div>
 
 - Continuous Random Variables: Continuous random variables take values in intervals of $\mathbb{R}$. $Pr(X=x)= 0$ for all $x$. Thus there is no probability mass function.
@@ -41,7 +41,7 @@ Pr(a \leq X \leq b) &= \int_a^b f_X(x) dx\\
 \right.
 $$
 <div align=center>
-    <img src ="PDF.png" width="500" height ="200"/>  
+    <img src ="img/PDF.png" width="500" height ="200"/>  
 </div>
 
 - Cumulative Distribution Function (CDF): for a continuous X, we define $F_X$ such that:
@@ -56,7 +56,7 @@ Pr(X\leq x) &= Pr(X\in(-\infty , x))
 \right.
 $$
 <div align=center>
-    <img src ="CDF2.png" width="500" height ="200"/>  
+    <img src ="img/CDF2.png" width="500" height ="200"/>  
 </div>
 
 
@@ -65,17 +65,17 @@ Random variables $X$ and $Y$ have a joint distribution if their realizations com
 
 - Joint CDF:
 <div align=center>
-    <img src ="jc.png" width="300" height ="50"/>  
+    <img src ="img/jc.png" width="300" height ="50"/>  
 </div>
 - Joint PDF:
 <div align=center>
-    <img src ="jp.png" width="500" height ="80"/>  
+    <img src ="img/jp.png" width="500" height ="80"/>  
 </div>
 
 ## Marginal Distribution
 Given that $(X,Y)$ is random vector, what is the distribution of $Y$?
 <div align=center>
-    <img src ="MD.png" width="500" height ="200"/>  
+    <img src ="img/MD.png" width="500" height ="200"/>  
 </div>
 
 ## Conditional Distributions
@@ -83,20 +83,20 @@ Given that $(X,Y)$ is random vector, what is the distribution of $Y$?
 - The distribution describing this random variable is called the conditional distribution of $Y$ given $X\in[2,2.1]$.
 
 <div align=center>
-    <img src ="cd.png" width="500" height ="200"/>  
+    <img src ="img/cd.png" width="500" height ="200"/>  
 </div>
 
 ## Expected Value:
 We denote the expected value of a discrete random variable X as:
 
 <div align=center>
-    <img src ="exd.png" width="330" height ="80"/>  
+    <img src ="img/exd.png" width="330" height ="80"/>  
 </div>
 
 We denote the expected value of a continuous random variable X as:
 
 <div align=center>
-    <img src ="exc.png" width="350" height ="80"/>  
+    <img src ="img/exc.png" width="350" height ="80"/>  
 </div>
 
 ## Probabilistic Model Estimation:
@@ -138,7 +138,7 @@ $$
 
 - Maximum Likelihood Estimation
 <div align=center>
-    <img src ="mLE.png" width="600" height ="250"/>  
+    <img src ="img/mLE.png" width="600" height ="250"/>  
 </div>
 
 ## Code

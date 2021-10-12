@@ -2,19 +2,19 @@
 
 ## 1. Choose a form for the function which relates inputs (x) to output (y)
 <div align=center>
-    <img src ="form.png" width="400" height ="200"/>  
+    <img src ="img/form.png" width="400" height ="200"/>  
 </div>
 
 ## 2. Define training loss
 
 - Option 1: Minimize the sum of magnitudes (absolute values) of residuals: The L1-norm (also called LAD or Least Absolute Deviation)
 <div align=center>
-    <img src ="L1.png" width="400" height ="80"/>  
+    <img src ="img/L1.png" width="400" height ="80"/>  
 </div>
 
 - Option 2: Minimize the sum of squared residuals: The squared L2-norm (also called OLS or Ordinary Least Squares)
 <div align=center>
-    <img src ="L2.png" width="400" height ="80"/>  
+    <img src ="img/L2.png" width="400" height ="80"/>  
 </div>
 
 ## 3. Find function in a form which gives the smallest training loss

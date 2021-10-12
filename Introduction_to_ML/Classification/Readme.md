@@ -2,7 +2,7 @@
 
 ## Difference between Regression and Classification
 <div align=center>
-    <img src ="clavsreg.png" width="600" height ="200"/>  
+    <img src ="img/clavsreg.png" width="600" height ="200"/>  
 </div>
 
 ## Logistic Regression
@@ -49,14 +49,14 @@ $$
 $$
 
 <div align=center>
-    <img src ="db.png" width="500" height ="240"/>  
+    <img src ="img/db.png" width="500" height ="240"/>  
 </div>
 
 
 ### Ranking
 - In some cases we can rank data samples from “most positive” to “most negative”
 <div align=center>
-    <img src ="rank.png" width="500" height ="100"/>  
+    <img src ="img/rank.png" width="500" height ="100"/>  
 </div>
 
 ### Probabilities
@@ -67,7 +67,7 @@ misclassifications with lower confidence
 
 ## Confusion Matrix (2 Class)
 <div align=center>
-    <img src ="cm.png" width="300" height ="250"/>  
+    <img src ="img/cm.png" width="300" height ="250"/>  
 </div>
 
 - TP = “True Positive”. i.e. your classifier predicted 1; it was correct.
@@ -79,7 +79,7 @@ misclassifications with lower confidence
 - Say we have a dataset of 950 negative-class samples, 50 positive-class samples
 - If we lower our positive class threshold, our logistic regression accuracy changes
 <div align=center>
-    <img src ="acc.png" width="600" height ="200"/>  
+    <img src ="img/acc.png" width="600" height ="200"/>  
 </div>
 
 ## Measurement:
@@ -103,11 +103,11 @@ $$
 - ROC(Receiver Operating Characteristic) shows the performance of a classifier at all classification thresholds
 
 <div align=center>
-    <img src ="roc.png" width="600" height ="150"/>  
+    <img src ="img/roc.png" width="600" height ="150"/>  
 </div>
 - An ROC Curve plots True Positive Rate or TPR  vs. False Positive Rate or FPR. TPR=TP/P, FPR=FP/N  
 <div align=center>
-    <img src ="rocc.png" width="300" height ="280"/>  
+    <img src ="img/rocc.png" width="300" height ="280"/>  
 </div>
 
 - If Area Under Receiver Operating
@@ -122,7 +122,7 @@ worst possible (TPR=0, FPR=1)
 - PRC=Precision-Recall Curve. Plot Precision on y-axis, Recall on x-axis for all possible thresholds
 
 <div align=center>
-    <img src ="prc.png" width="300" height ="280"/>  
+    <img src ="img/prc.png" width="300" height ="280"/>  
 </div>
 
 - If Area Under PRC (AUPRC) is 1,
@@ -133,6 +133,6 @@ Define $K$ classes numbered $1,\cdots,K$. Also define random variables $Y_1,\cdo
 for a class k observation (realization is $y$) $\rightarrow$ we call this one-hot encoding (ohe).
 
 <div align=center>
-    <img src ="ohe.png" width="600" height ="180"/>  
+    <img src ="img/ohe.png" width="600" height ="180"/>  
 </div>
 
