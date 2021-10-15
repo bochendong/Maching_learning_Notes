@@ -60,3 +60,46 @@ $$
 
 ## The Bootstrap
     
+Bootstrap = a powerful technique to construct confidence intervals using artificially drawn samples in addition to an originally-drawn sample
+ 
+<div align=center><img src ="img/bs.png" width="600" height ="220"/>  </div>
+
+Now that we have a distribution of bootstrap statistics, we can construct a CI
+
+For example, a 90$\%$ confidence interval
+centred at the sample mean would be
+
+$$
+CI = [\hat{\theta} - \delta_{0.95}^*, \hat{\theta^*} - \delta_{0.05}^*], \text{where }  \delta^* =  \hat{\theta^*} - \hat{\theta}
+$$
+
+<div align=center><img src ="img/bsci.png" width="300" height ="280"/>  </div>
+
+###  Prediction Uncertainty (Bootstrap)
+
+Example: say we want to fit a cubic spline to this data. We can use a linear expansion of B-spline basis functions $h_i(x)$.
+<div align=center><img src ="img/pu.png" width="600" height ="280"/>  </div>
+
+We store the B coefficients of these basis functions into a vector, and fit $\hat{y} = f(x) = X\theta$
+<div align=center><img src ="img/mp.png" width="500" height ="180"/>  </div>
+
+Here is our fit $\hat{y} = f(x) = X\theta$, but how confident can we be of this?
+<div align=center><img src ="img/bso.png" width="320" height ="280"/>  </div>
+
+- From our original sample, generate a new sample (with replacement)
+- For this new sample, get a new parameter estimate $\hat{\theta}_b^*$
+- Do this as many times as you can
+
+<div align=center><img src ="img/bss.png" width="320" height ="280"/>  </div>
+
+And since we now have a distribution of samples for each x, we can compute a 95$\%$ Confidence Interval (CI)
+
+<div align=center><img src ="img/95ci.png" width="320" height ="280"/>  </div>
+
+Note that we could have also used CLT to get the CIs
+
+<div align=center><img src ="img/cltci.png" width="320" height ="280"/>  </div>
+
+Warning: our Confidence Interval (via bootstrap [up] or CLT [down]) is for the true value of $f(x)$, not for new observations $(x_{new}, y_{new})$
+
+Why? A CI for new data would need to also consider random variability $(\sigma^2)$ between $f(x_n)$ and $y_n$.
