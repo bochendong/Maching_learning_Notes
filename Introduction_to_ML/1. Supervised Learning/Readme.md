@@ -2,7 +2,7 @@
 
 ## 1. Choose a form for the function which relates inputs (x) to output (y)
 <div align=center>
-    <img src ="img/form.png" width="400" height ="200"/>  
+    <img src ="img/form.png" width="400" height ="180"/>  
 </div>
 
 ## 2. Define training loss
@@ -60,7 +60,7 @@ $$
 $$
 
 ## Measure the fit
-For linear regression we often use R2: the coefficient of determination
+For linear regression we often use R2: the coefficient of determination. RSS -> Residual Sum of Squares, TSS -> Total Sum of Squares
 
 $$
 R^2 = 1 - \frac{RSS}{TSS} = 1- \frac{\sum_{i = 1} ^n (y - \hat{y})^2}{\sum_{i = 1} ^n (y - \overline{y})^2}
@@ -70,6 +70,29 @@ $R^2 \to 0$, no fit, $R^2 \to 1$, perfect fit.
 Note: OLS will always have the highest possible $R^2$ value.
 
 ## Robust Regression
+
+Robust statistics: provides methods which are not affected by (less sensitive to) outliers.
+
+If we only consider a sample $Y = \{y_1, y_2, \cdots, y_n\}$, Then the mean of the sample is the solution to:
+
+
+$$
+\underset{\mu}{\min}\  f = \sum_i^n (y_i - \mu)^2
+$$
+
+<div align=center>
+    <img src ="img/mean.png" width="180" height ="120"/>  
+</div>
+
+Similarly, the median of the sample is the solution to:
+
+$$
+\underset{\mu}{\min}\  f = \sum_i^n |y_i - \mu|
+$$
+
+<div align=center>
+    <img src ="img/median.png" width="200" height ="120"/>  
+</div>
 
 - Least squares is very sensitive to outliers.
 - Absolute error is more robust to outliers
@@ -104,8 +127,11 @@ Compute the L2 loss value (rss) and the gradient (provided) given arguments b (1
 ```python
 def linearModelLossRSS(b,X,y):
     yp = linearModelPredict(b,X)
+
     res = y - yp
+    # RSS = Residual Sum of Squares
     rss = sum(res**2)
+
     gradient= -2*np.dot(res,X)
     return (rss, gradient)
 ```
@@ -114,10 +140,13 @@ def linearModelLossRSS(b,X,y):
 Compute the L1 loss value (sad) and the gradient (provided) given arguments b (1d-array), X (2d-array), and y (observed output, a 1d-array).
 
 ```python
+# LAD = Least Absolute Deviation
 def linearModelLossLAD(b,X,y):
     yp = linearModelPredict(b,X)
+
     res = y - yp
     sad = sum(abs(res))
+
     grad = - (np.dot(np.sign(res),X))
     return (sad,grad)
 ```
@@ -135,7 +164,7 @@ def linearModelFit(X,y,lossf = linearModelLossRSS):
     
     res = y - np.mean(y)
     TSS = sum(res**2)
-    RSS,deriv = linearModelLossRSS(bpr, X, y)
+    RSS, deriv = linearModelLossRSS(bpr, X, y)
     R2 = 1-(RSS/TSS)
     return (bpr,R2)
 ```

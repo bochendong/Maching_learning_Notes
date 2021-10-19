@@ -70,10 +70,10 @@ misclassifications with lower confidence
     <img src ="img/cm.png" width="300" height ="250"/>  
 </div>
 
-- TP = “True Positive”. i.e. your classifier predicted 1; it was correct.
-- FP = “False Positive”. i.e. your classifier predicted 1; it was incorrect (Type I error). 
-- FN = “False Negative”. i.e. your classifier predicted 0; it was incorrect (Type II error). 
-- TN = “True Negative”. i.e. your classifier predicted 0; it was correct.
+- **TP = “True Positive”.** i.e. your classifier predicted 1; it was correct.
+- **FP = “False Positive”.** i.e. your classifier predicted 1; it was incorrect (Type I error). 
+- **FN = “False Negative”.** i.e. your classifier predicted 0; it was incorrect (Type II error). 
+- **TN = “True Negative”.** i.e. your classifier predicted 0; it was correct.
 
 ## Accuracy
 - Say we have a dataset of 950 negative-class samples, 50 positive-class samples
@@ -81,6 +81,9 @@ misclassifications with lower confidence
 <div align=center>
     <img src ="img/acc.png" width="600" height ="200"/>  
 </div>
+
+- Generally, if we allow more samples to be negative (increase the threshold), both true and false positive will decrese, in the meantime, both true and false negative will increase.
+
 
 ## Measurement:
 

@@ -61,12 +61,13 @@ $$
 
 
 ##  Joint Distributions
-Random variables $X$ and $Y$ have a joint distribution if their realizations come together as a pair. $(X,Y)$ is a random vector. Realizations are $(x1,y1),(x2,y2)$,...
+Random variables $X$ and $Y$ have a joint distribution if their realizations come together as a pair. $(X,Y)$ is a random vector. Realizations are $(x_1,y_1),(x_2,y_2)$,...
 
 - Joint CDF:
 <div align=center>
     <img src ="img/jc.png" width="300" height ="50"/>  
 </div>
+
 - Joint PDF:
 <div align=center>
     <img src ="img/jp.png" width="500" height ="80"/>  
