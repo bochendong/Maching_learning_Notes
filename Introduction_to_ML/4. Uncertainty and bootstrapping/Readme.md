@@ -100,6 +100,125 @@ Note that we could have also used CLT to get the CIs
 
 <div align=center><img src ="img/cltci.png" width="320" height ="280"/>  </div>
 
-Warning: our Confidence Interval (via bootstrap [up] or CLT [down]) is for the true value of $f(x)$, not for new observations $(x_{new}, y_{new})$
+**Warning:** our Confidence Interval (via bootstrap [up] or CLT [down]) is for the true value of $f(x)$, not for new observations $(x_{new}, y_{new})$
 
-Why? A CI for new data would need to also consider random variability $(\sigma^2)$ between $f(x_n)$ and $y_n$.
+**Why?** A CI for new data would need to also consider random variability $(\sigma^2)$ between $f(x_n)$ and $y_n$.
+
+## Code:
+
+```python
+tdf = pd.read_csv("tpr.csv")
+
+# Using Central Limit Theorem (CLT), compute Confidence Intervals (CI) (use ddof=1 to indicate we're using the sample mean)
+std_err = np.std(tdf.C, ddof=1)/np.sqrt(len(tdf))
+ci = [tdf.C.mean() - 1.96*std_err, tdf.C.mean() + 1.96 * std_err]
+```
+
+### Show the joint distribution
+```python
+bdf = pd.read_csv("ncb.csv")
+
+# Important trick: Let's exclude observations with missing week or weight data (NaN values). 
+
+bdf = bdf.dropna(subset=["weeks","weight"])
+sns.jointplot(data=bdf, x='weeks', y='weight')
+```
+
+<div align=center>
+    <img src ="img/jb.png" width="300" height ="300"/>  
+</div>
+
+
+### Build a linear model on the data and plot the fit 
+```python
+reg = sklearn.linear_model.LinearRegression()
+reg.fit(X, bdf.weight)
+
+x_new = np.linspace(min(bdf.weeks), max(bdf.weeks),100)
+X_new = np.c_[x_new, x_new**2, x_new**3]
+ypr = reg.predict(X_new)
+
+# plot the dat and the curve of best fit
+plt.scatter(bdf.weeks, bdf.weight)
+plt.plot(x_new, ypr, color="red")
+```
+
+<div align=center>
+    <img src ="img/linear.png" width="300" height ="260"/>  
+</div>
+
+```python
+print(reg.coef_)
+# [-5.21866875e+00  1.78832738e-01 -1.85596626e-03]
+# The linear model has the form of b0x + b1x^2 + b2x^3, so it has 3 coef
+```
+
+### Bootstrap the model parameters
+```python
+# Let's bootstrap the model parameters b1,b2,b3 with 10000 bootstrap samples, given a sample S (dataframe)
+def bootstrap_param(S):
+    num_iterations = 1000
+    sample_size = len(S)
+    
+    #initialize empty array of bootstrap parameter estimates
+    boot_thetas = np.zeros((1000,3))
+    
+    for i in range(num_iterations):
+        # create bootstrap sample
+        S_star = S.sample(sample_size, replace=True)
+        
+        # create design matrix from bootstrap sample
+        X = np.c_[S_star.weeks, S_star.weeks**2, S_star.weeks**3]
+        reg.fit(X,S_star.weight)
+        boot_thetas[i,:] = reg.coef_ 
+    return boot_thetas
+
+# Finally, let's bootstrap the model prediction with 10000 bootstrap samples, given a sample S (dataframe) and x values
+def bootstrap_pred(S):
+    num_iterations = 1000
+    sample_size = len(S)
+
+    # Let's create our x data using linspace to get a smooth plot for each bootstrap-predicted set of y values
+    x_new = np.linspace(min(S.weeks),max(S.weeks),100)
+    X_new = np.c_[x_new,x_new**2,x_new**3]
+    
+    # Let's also initialize our ypred to an array of 0's
+    ypred = np.zeros((1000,X_new.shape[0]))
+    
+    for i in range(num_iterations):
+        #Here we want to store predictions for y from bootstrapped samples. Within the loop, let's get each sample S_star.
+        S_star = S.sample(num_iterations,replace=True)
+        
+        #create design matrix from bootstrapped sample, fit to data
+        X = np.c_[S_star.weeks, S_star.weeks**2, S_star.weeks**3]
+        reg.fit(X,S_star.weight)
+        
+        #store predictions for y in ypred array
+        ypred[i,:] = reg.predict(X_new)
+    return ypred
+
+ypr_boot = bootstrap_pred(bdf)
+
+for i in range(20):
+    plt.plot(x_new, ypr_boot[i,:])
+```
+
+<div align=center>
+    <img src ="img/bsc.png" width="300" height ="220"/>  
+</div>
+
+### Compute upper and lower bounds of our confidence interval for the predictions
+```python
+lower = np.quantile(ypr_boot - ypr, 0.025, axis=0) #axis=0 refers to rows
+upper = np.quantile(ypr_boot - ypr, 0.975, axis=0)
+
+#plot prediction
+plt.plot(x_new, ypr)
+#plot confidence interval (from bootstrap)
+plt.plot(x_new, ypr - upper, 'r--')
+plt.plot(x_new, ypr - lower, 'r--')
+```
+
+<div align=center>
+    <img src ="img/ul.png" width="300" height ="220"/>  
+</div>

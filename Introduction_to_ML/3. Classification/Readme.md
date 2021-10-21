@@ -139,3 +139,71 @@ for a class k observation (realization is $y$) $\rightarrow$ we call this one-ho
     <img src ="img/ohe.png" width="600" height ="180"/>  
 </div>
 
+
+## Code:
+
+Check if the class is balanced.
+```python
+# Is it class-balanced or unbalanced?
+df.CLASS.value_counts()
+```
+
+Calculate the number of tp, tn, fp, fn, Accuracy, Precision, Recall,  Sensitivity and Specificity from model output.
+```python
+# Calculate tp, tn, fp, fn, and test accuracy
+def compute_performance(yhat, y, classes):
+    tp = sum(np.logical_and(yhat == classes[1], y == classes[1]))
+    tn = sum(np.logical_and(yhat == classes[0], y == classes[0]))
+    fp = sum(np.logical_and(yhat == classes[1], y == classes[0]))
+    fn = sum(np.logical_and(yhat == classes[0], y == classes[1]))
+
+    print(f"tp: {tp} tn: {tn} fp: {fp} fn: {fn}")
+    
+    # Precision
+    # "Of the ones I labeled +, how many are actually +?"
+    precision = tp / (tp + fp)
+    
+    # Recall
+    # "Of all the + in the data, how many do I correctly label?"
+    recall = tp / (tp + fn)    
+    
+    # Sensitivity
+    sensitivity = recall
+    
+    # Specificity
+    # "Of all the - in the data, how many do I correctly label?"
+    specificity = tn / (fp + tn)
+
+    print("Accuracy:",round(acc,3),"Recall:",round(recall,3),"Precision:",round(precision,3),
+          "Sensitivity:",round(sensitivity,3),"Specificity:",round(specificity,3))
+
+compute_performance(y_pred, ytest, df.classes_)
+```
+
+Draw the ROC curve.
+```python
+# Predict with sklearn. Note: probabilities of class 0 (first col), class 1 (2nd col)
+ytest_prob = pd.predict_proba(Xtest)
+
+'''
+Example output:
+array([[3.41493136e-02, 9.65850686e-01],
+       [9.99968922e-01, 3.10777332e-05],
+       [5.24721411e-01, 4.75278589e-01],
+       ...,
+       [9.82047805e-01, 1.79521950e-02],
+       [1.52567844e-01, 8.47432156e-01],
+       [9.99813357e-01, 1.86643411e-04]])
+'''
+
+# Adjusting the decision threshold
+yhat = pd.classes_[(ytest_prob[:,1]>0.1).astype(int)]
+
+# ROC using sklearns ROC curve.
+fpr, tpr, _ = roc_curve(ytest, ytest_prob[:,1], pos_label="Pos")
+ax=sns.lineplot(fpr,tpr)
+
+# Determine AUC for each of the ROC curves
+AUC= auc(fpr,tpr)
+
+```

@@ -142,3 +142,65 @@ Let’s say that we generate a dataset, split it into train and test sets $+$ co
     <img src ="img/5.11.png" width="800" height ="250"/>  
 </div>
 
+## Code:
+
+### Read the data to dataframe
+```python
+df = pd.read_csv('ffd.csv')
+display(df.head())
+```
+<div align=center>
+    <img src ="img/5.12.png" width="600" height ="130"/>  
+</div>
+
+### Convert all categorical data into numerical data. Before that, specify this data as *Categorical*
+```python
+df['month'] = pd.Categorical(df.month, categories=['jan','feb', 'mar', 'apr','may','jun','jul','aug','sep','oct','nov','dec'])
+
+# Set non-numerical data as Categorical
+df['day'] = pd.Categorical(df.month, categories=['mon','tue', 'wed', 'thu', 'fir','sat', 'sun'])
+
+# Use "get_dummies" to convert categorical data to numerical data (you can set "drop_first=True")
+df = pd.get_dummies(df, drop_first=True)
+```
+
+### Create pipline for each model
+```python
+M1 = Pipeline([
+    ('lr1', LinearRegression())
+])
+
+M2 = Pipeline([
+    ('poly', PolynomialFeatures(degree=2, include_bias=False)),
+    ('lr3', LinearRegression())
+])
+
+class KeyFeatures(BaseEstimator, TransformerMixin):
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X, y=None):
+        X = X.assign(temp2= X.temp**2)
+        X = X.assign(RH2= X.RH**3)
+        return X
+
+# Create a pipeline for model 3 (M3) [ /6 marks]
+M3 = Pipeline([
+    ('temp_sqr_RH_cubic', KeyFeatures()),
+    ('lr2', LinearRegression())
+])
+```
+
+### For models 1-3, use 4-fold Cross-validation (CV) on the training set.
+```python
+kf = KFold(n_splits=4)
+sc = make_scorer(mse) #tell CV scorer how we want to eval test data
+
+print(f"CV loss (M1): {cross_val_score(M1, Xtrain, ytrain, cv=kf, scoring=sc).mean()}")
+print(f"CV loss (M2): {cross_val_score(M2, Xtrain, ytrain, cv=kf, scoring=sc).mean()}")
+print(f"CV loss (M3): {cross_val_score(M3, Xtrain, ytrain, cv=kf, scoring=sc).mean()}")
+```
+
+
+
+
