@@ -86,7 +86,7 @@ df = pd.read_csv('iris.csv')
 Given $\mathbf{X}$ and $\mathbf{b}$, where $\mathbf{X}$ has a column of ones and a column of inputs $x_i$, and $\mathbf{b}$ contains parameters $b_0$ and $b_1$. 
 
 ```python
-def linearModelPredict(b,X):
+def linearModelPredict(b, X):
     yp = np.dot(X, b)
     return yp
 ```
@@ -95,11 +95,11 @@ def linearModelPredict(b,X):
 Compute the L2 loss value (rss) and the gradient (provided) given arguments b (1d-array), X (2d-array), and y (observed output, a 1d-array).
 
 ```python
-def linearModelLossRSS(b,X,y):
-    yp = linearModelPredict(b,X)
+def linearModelLossRSS(b, X, y):
+    yp = linearModelPredict(b, X)
     res = y - yp
-    rss = sum(res**2)
-    gradient= -2*np.dot(res,X)
+    rss = sum(res ** 2)
+    gradient= -2 * np.dot(res, X)
     return (rss, gradient)
 ```
 
@@ -107,29 +107,29 @@ def linearModelLossRSS(b,X,y):
 Compute the L1 loss value (sad) and the gradient (provided) given arguments b (1d-array), X (2d-array), and y (observed output, a 1d-array).
 
 ```python
-def linearModelLossLAD(b,X,y):
-    yp = linearModelPredict(b,X)
+def linearModelLossLAD(b, X, y):
+    yp = linearModelPredict(b, X)
     res = y - yp
     sad = sum(abs(res))
-    grad = - (np.dot(np.sign(res),X))
-    return (sad,grad)
+    grad = - (np.dot(np.sign(res), X))
+    return (sad, grad)
 ```
 
 ### Train the Model
 Returns a 2-tuple containing a prediction for b (`bpr`, a 1d-array) and the $R^2$ value (`R2`) of your fit, given arguments X (2d-array), y (1d-array), and lossf (the loss function for your fit). For now, set lossf as the L2 loss function that you defined previously. Call linearModelFit with the provided values and print the result.
 
 ```python
-def linearModelFit(X,y,lossf = linearModelLossRSS):
+def linearModelFit(X, y, lossf = linearModelLossRSS):
     nrows,ncols = X.shape
-    bpr=np.zeros((ncols,1))
+    bpr=np.zeros((ncols, 1))
     
-    RES = so.minimize(lossf, bpr, args=(X,y), jac=True)
+    RES = so.minimize(lossf, bpr, args=(X, y), jac=True)
     bpr= RES.x
     
     res = y - np.mean(y)
-    TSS = sum(res**2)
+    TSS = sum(res ** 2)
     RSS,deriv = linearModelLossRSS(bpr, X, y)
-    R2 = 1-(RSS/TSS)
-    return (bpr,R2)
+    R2 = 1-(RSS / TSS)
+    return (bpr, R2)
 ```
 
