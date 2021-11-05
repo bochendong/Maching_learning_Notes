@@ -2,7 +2,7 @@
 
 ## Difference between Regression and Classification
 <div align=center>
-    <img src ="clavsreg.png" width="600" height ="200"/>  
+    <img src ="img/clavsreg.png" width="600" height ="200"/>  
 </div>
 
 ## Logistic Regression
@@ -49,14 +49,14 @@ $$
 $$
 
 <div align=center>
-    <img src ="db.png" width="500" height ="240"/>  
+    <img src ="img/db.png" width="500" height ="240"/>  
 </div>
 
 
 ### Ranking
 - In some cases we can rank data samples from “most positive” to “most negative”
 <div align=center>
-    <img src ="rank.png" width="500" height ="100"/>  
+    <img src ="img/rank.png" width="500" height ="100"/>  
 </div>
 
 ### Probabilities
@@ -67,20 +67,23 @@ misclassifications with lower confidence
 
 ## Confusion Matrix (2 Class)
 <div align=center>
-    <img src ="cm.png" width="300" height ="250"/>  
+    <img src ="img/cm.png" width="300" height ="250"/>  
 </div>
 
-- TP = “True Positive”. i.e. your classifier predicted 1; it was correct.
-- FP = “False Positive”. i.e. your classifier predicted 1; it was incorrect (Type I error). 
-- FN = “False Negative”. i.e. your classifier predicted 0; it was incorrect (Type II error). 
-- TN = “True Negative”. i.e. your classifier predicted 0; it was correct.
+- **TP = “True Positive”.** i.e. your classifier predicted 1; it was correct.
+- **FP = “False Positive”.** i.e. your classifier predicted 1; it was incorrect (Type I error). 
+- **FN = “False Negative”.** i.e. your classifier predicted 0; it was incorrect (Type II error). 
+- **TN = “True Negative”.** i.e. your classifier predicted 0; it was correct.
 
 ## Accuracy
 - Say we have a dataset of 950 negative-class samples, 50 positive-class samples
 - If we lower our positive class threshold, our logistic regression accuracy changes
 <div align=center>
-    <img src ="acc.png" width="600" height ="200"/>  
+    <img src ="img/acc.png" width="600" height ="200"/>  
 </div>
+
+- Generally, if we allow more samples to be negative (increase the threshold), both true and false positive will decrese, in the meantime, both true and false negative will increase.
+
 
 ## Measurement:
 
@@ -103,11 +106,11 @@ $$
 - ROC(Receiver Operating Characteristic) shows the performance of a classifier at all classification thresholds
 
 <div align=center>
-    <img src ="roc.png" width="600" height ="150"/>  
+    <img src ="img/roc.png" width="600" height ="150"/>  
 </div>
 - An ROC Curve plots True Positive Rate or TPR  vs. False Positive Rate or FPR. TPR=TP/P, FPR=FP/N  
 <div align=center>
-    <img src ="rocc.png" width="300" height ="280"/>  
+    <img src ="img/rocc.png" width="300" height ="280"/>  
 </div>
 
 - If Area Under Receiver Operating
@@ -122,7 +125,7 @@ worst possible (TPR=0, FPR=1)
 - PRC=Precision-Recall Curve. Plot Precision on y-axis, Recall on x-axis for all possible thresholds
 
 <div align=center>
-    <img src ="prc.png" width="300" height ="280"/>  
+    <img src ="img/prc.png" width="300" height ="280"/>  
 </div>
 
 - If Area Under PRC (AUPRC) is 1,
@@ -133,6 +136,74 @@ Define $K$ classes numbered $1,\cdots,K$. Also define random variables $Y_1,\cdo
 for a class k observation (realization is $y$) $\rightarrow$ we call this one-hot encoding (ohe).
 
 <div align=center>
-    <img src ="ohe.png" width="600" height ="180"/>  
+    <img src ="img/ohe.png" width="600" height ="180"/>  
 </div>
 
+
+## Code:
+
+Check if the class is balanced.
+```python
+# Is it class-balanced or unbalanced?
+df.CLASS.value_counts()
+```
+
+Calculate the number of tp, tn, fp, fn, Accuracy, Precision, Recall,  Sensitivity and Specificity from model output.
+```python
+# Calculate tp, tn, fp, fn, and test accuracy
+def compute_performance(yhat, y, classes):
+    tp = sum(np.logical_and(yhat == classes[1], y == classes[1]))
+    tn = sum(np.logical_and(yhat == classes[0], y == classes[0]))
+    fp = sum(np.logical_and(yhat == classes[1], y == classes[0]))
+    fn = sum(np.logical_and(yhat == classes[0], y == classes[1]))
+
+    print(f"tp: {tp} tn: {tn} fp: {fp} fn: {fn}")
+    
+    # Precision
+    # "Of the ones I labeled +, how many are actually +?"
+    precision = tp / (tp + fp)
+    
+    # Recall
+    # "Of all the + in the data, how many do I correctly label?"
+    recall = tp / (tp + fn)    
+    
+    # Sensitivity
+    sensitivity = recall
+    
+    # Specificity
+    # "Of all the - in the data, how many do I correctly label?"
+    specificity = tn / (fp + tn)
+
+    print("Accuracy:",round(acc,3),"Recall:",round(recall,3),"Precision:",round(precision,3),
+          "Sensitivity:",round(sensitivity,3),"Specificity:",round(specificity,3))
+
+compute_performance(y_pred, ytest, df.classes_)
+```
+
+Draw the ROC curve.
+```python
+# Predict with sklearn. Note: probabilities of class 0 (first col), class 1 (2nd col)
+ytest_prob = pd.predict_proba(Xtest)
+
+'''
+Example output:
+array([[3.41493136e-02, 9.65850686e-01],
+       [9.99968922e-01, 3.10777332e-05],
+       [5.24721411e-01, 4.75278589e-01],
+       ...,
+       [9.82047805e-01, 1.79521950e-02],
+       [1.52567844e-01, 8.47432156e-01],
+       [9.99813357e-01, 1.86643411e-04]])
+'''
+
+# Adjusting the decision threshold
+yhat = pd.classes_[(ytest_prob[:,1]>0.1).astype(int)]
+
+# ROC using sklearns ROC curve.
+fpr, tpr, _ = roc_curve(ytest, ytest_prob[:,1], pos_label="Pos")
+ax=sns.lineplot(fpr,tpr)
+
+# Determine AUC for each of the ROC curves
+AUC= auc(fpr,tpr)
+
+```
