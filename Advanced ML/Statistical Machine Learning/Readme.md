@@ -23,7 +23,8 @@ $$
 \begin{aligned}
 P(+m|+s) &= \frac{P(+s|+m)}{P(+s)}P(+m)\\
  &= \frac{P(+s|+m)P(+m)}{P(+s|+m)P(+m) + P(+s|-m)P(-m)}\\
- &= \frac{0.8\times0.0001}{0.8\times0.0001 + 0.01\times0.999}
+ &= \frac{0.8\times0.0001}{0.8\times0.0001 + 0.01\times0.9999}\\
+ &= 0.00793
 \end{aligned}
 $$
 ### Example 2:
@@ -96,7 +97,7 @@ $$
 
 $$
 \begin{aligned}
-P(\text{lime on} 6 | 5\text{ limes})
+P(\text{lime on } 6 | 5\text{ limes})
 &= P(\text{lime on } 6 | h_1)P(h_1|5\text{ limes})
 + P(\text{lime on } 6 | h_2)P(h_2|5\text{ limes})\\
 
@@ -175,7 +176,7 @@ P(Y, W_1, \cdots, W_n) = P(Y)\prod_i P(W_i|Y)
 $$
 - <div align=left> <img src ="img/spam.png" width="400" height ="150"/>  </div>
 
-## Question:
+## Question 1:
 
 After conducting a blood test, the doctor told you that you were tested positive for a fatal disease. Worse, the test is quite accurate: the probability of false positive (one is tested positive without the disease) is 0.05, and the probability of false negative (one is tested negative with the disease) is 0.02. Seeing that you are desperate, the doctor told you that overall the disease is rather rare, only 1 in 10,000 people.
 
@@ -187,16 +188,18 @@ F: fatal disease, T: blood test
 - (a)
 $$
 \begin{aligned}
-P(F+) &= 0.0001\\
-P(T+|F-) &= 0.05\\
-P(T-|F+) &= 0.02
+P(F^+) &= 0.0001\\
+P(T^+|F^-) &= 0.05\\
+P(T^-|F^+) &= 0.02
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-P(F+|T+) &= \frac{P(T+|F+)P(F+)}{P(T+)}\\
-&= \frac{P(T+|F+)P(F+)}{P(T+|F+)P(F+) + P(T+|F-)P(F-)}
+P(F^+|T^+) &= \frac{P(T^+|F^+)P(F^+)}{P(T^+)}\\
+&= \frac{P(T^+|F^+)P(F^+)}{P(T^+|F^+)P(F^+) + P(T^+|F^-)P(F^-)}\\
+&= \frac{0.98\times 0.0001}{0.98\times 0.0001 + 0.05\times 0.9999}\\
+&= 0.00195
 \end{aligned}
 $$
 
@@ -204,8 +207,34 @@ $$
   
 $$
 \begin{aligned}
-P(F_2+|T+) =
+P(F^+|T^+) &= \frac{P(T^+|F^+)P(F^+)}{P(T^+)}\\
+&= \frac{P(T^+|F^+)P(F^+)}{P(T^+|F^+)P(F^+) + P(T^+|F^-)P(F^-)}\\
+&= \frac{0.98\times 0.00195}{0.98\times 0.00195 + 0.05\times 0.9805}\\
+&= 0.03751
 
 \end{aligned}
+$$
+
+## Question 2:
+
+|  Training Example | N(Running nose) |C(Coughing)  | R(Reddend skin) | F(Fever)         |Classification  |
+| :------------- | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| d1              |+                  |+            | +              |-                  |positive(ill)|
+| d2              |+                  |+            | -              |-                  |positive(ill)|
+| d3 	            |-                  |-            | +              |+                  |positive(ill)|
+| d4              |+                  |-            | -              |-                  |negative(healthy)|
+| d5              |-                  |-            | -              |-                  |negative(healthy)|
+| d6              |-                  |+            | +              |-                  |negative(healthy)|
+
+Apply naive Bayes classifier to calculate (predict) the probability of the following subjects being ill:  
+- d7: a person who is coughing and has a fever, but no running nose and no reddened skin.  
+- d8: a person who is coughing, but no running nose and no reddened skin, and it is unknown if the person has a fever or not. 
+
+Note: Use Laplace estimate with k=1 in your calculation. 
+
+I: ill, H: healthy
+
+$$
+P(I| C, F, \neg N, \neg R)
 $$
 
