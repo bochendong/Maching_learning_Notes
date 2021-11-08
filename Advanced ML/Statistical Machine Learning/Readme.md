@@ -234,7 +234,72 @@ Note: Use Laplace estimate with k=1 in your calculation.
 
 I: ill, H: healthy
 
+- Naive Bayes Classifier:
+
+  - First, by apply Laplace estimate with k=1, we have:
+  
 $$
-P(I| C, F, \neg N, \neg R)
+\begin{aligned}
+p(I) = \frac{1}{2} &\qquad
+P(H) = \frac{1}{2}\\
+
+P(C|I) = \frac{3}{5} &\qquad
+P(C|H) = \frac{2}{5}\\
+P(F|I) = \frac{2}{5} &\qquad
+P(F|H) = \frac{1}{5}\\
+P(\neg N|I) = \frac{2}{5} &\qquad
+P(\neg N|H) = \frac{3}{5}\\
+P(\neg R|I) = \frac{2}{5} &\qquad
+P(\neg R|H) = \frac{3}{5}\\
+\end{aligned}
 $$
+  - Then for d7, we can calculate the probability:
+
+$$
+\begin{aligned}
+P(I| C, F, \neg N, \neg R) &= \alpha P(C|I)P(F|I)P(\neg N|I)P(\neg R|I)P(I) \\
+&= \alpha \cdot  \frac{3}{5} \cdot \frac{2}{5} \cdot \frac{2}{5} \cdot\frac{2}{5} \cdot\frac{1}{2}\\
+&= \alpha \cdot \frac{12}{1250}\\
+
+P(H| C, F, \neg N, \neg R) &= \alpha P(C|H)P(F|H)P(\neg N|H)P(\neg R|H)P(H)  \\
+&= \alpha \frac{2}{5} \cdot \frac{1}{5} \cdot \frac{3}{5} \cdot \frac{3}{5} \cdot \frac{1}{2}\\
+&= \alpha \cdot \frac{9}{1250}
+
+\end{aligned}
+$$
+
+  - For d8:
+
+$$
+\begin{aligned}
+P(I| C,  \neg N, \neg R) &= \alpha P(C|I)P(\neg N|I)P(\neg R|I)P(I) \\
+&= \alpha \cdot \frac{3}{5} \cdot \frac{2}{5}  \cdot\frac{2}{5} \cdot\frac{1}{2}\\
+&= \alpha \cdot \frac{6}{250}\\
+
+P(H| C, \neg N, \neg R) &= \alpha P(C|H)P(\neg N|H)P(\neg R|H)P(H)  \\
+&= \alpha \cdot \frac{2}{5} \cdot \frac{3}{5}  \cdot \frac{3}{5} \cdot \frac{1}{2}\\
+&= \alpha \cdot \frac{9}{250}
+
+\end{aligned}
+$$
+
+- KNN Classifier:
+
+  For d7, use k-NN (with k = 3) to make the prediction, d7: $\neg N, C,\neg R, F$, then we can calculate the distance between d7 and each point:
+
+  - d1: $N, C, R, \neg F$, distance = 3, ill
+
+  - d2: $N, C, \neg R,  \neg F$, distance = 2, ill
+
+  - d3: $\neg N, \neg C, R, F$, distance = 2, ill
+
+  - d4: $N, \neg C, \neg R, \neg F$, distance = 3, healthy
+
+  - d5: $\neg N, \neg C, \neg R, \neg F$, distance = 2, healthy
+
+  - d6: $\neg N, C, R, \neg F$, distance = 2, healthy
+
+
+
+
 
