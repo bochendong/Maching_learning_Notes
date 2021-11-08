@@ -234,7 +234,7 @@ Note: Use Laplace estimate with k=1 in your calculation.
 
 I: ill, H: healthy
 
-- Naive Bayes Classifier:
+### Naive Bayes Classifier:
 
   - First, by apply Laplace estimate with k=1, we have:
   
@@ -268,6 +268,8 @@ P(H| C, F, \neg N, \neg R) &= \alpha P(C|H)P(F|H)P(\neg N|H)P(\neg R|H)P(H)  \\
 \end{aligned}
 $$
 
+  Then we can say d7 has more probability to be ill
+
   - For d8:
 
 $$
@@ -283,7 +285,9 @@ P(H| C, \neg N, \neg R) &= \alpha P(C|H)P(\neg N|H)P(\neg R|H)P(H)  \\
 \end{aligned}
 $$
 
-- KNN Classifier:
+  Then we can say d7 has more probability to be healthy
+
+### KNN Classifier:
 
   For d7, use k-NN (with k = 3) to make the prediction, d7: $\neg N, C,\neg R, F$, then we can calculate the distance between d7 and each point:
 
@@ -298,6 +302,45 @@ $$
   - d5: $\neg N, \neg C, \neg R, \neg F$, distance = 2, healthy
 
   - d6: $\neg N, C, R, \neg F$, distance = 2, healthy
+
+Then we sort and take first 3 closest instance, we can predict that d7 is ill
+
+
+## k-means
+
+For d1 to d6, include all attributes and the class label, apply k-Means with k = 2 make two clusters of the data. 
+
+First we pick two center points d1 and d2, we let positive be 1 and negative be 0, then we get:
+
+
+
+|  Training Example | N|C  | R | F       |Classification  |
+| :------------- | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| d1              |1                  |1            | 1             |0                  |1|
+| d2              |1                  |1            | 0              |0                  |1|
+| d3 	            |0                  |0            | 1              |1                  |1|
+| d4              |1                  |0            | 0              |0                  |0|
+| d5              |0                  |0            | 0              |0                  |0|
+| d6              |0                  |1            | 1              |0                  |0|
+
+$$
+D(d1, d3) = 3, D(d2, d3) = 4\\
+
+D(d1, d4) = 3, D(d2, d4) = 2\\
+
+D(d1, d5) = 4, D(d2, d5) = 3\\
+
+D(d1, d6) = 2, D(d2, d6) = 3\\
+
+$$
+
+Hence, {d1, d3, d6}, {d2, d4, d5} are two cluster, the new center is:
+
+$$
+C_1 = \{\frac{2}{3}, \frac{2}{3}, 1, \frac{1}{3}, \frac{2}{3} \}\\
+C_2 = \{\frac{2}{3}, \frac{1}{3}, 0,0, \frac{1}{3}\}
+$$
+
 
 
 
