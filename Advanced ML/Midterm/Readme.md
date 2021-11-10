@@ -285,3 +285,22 @@ z_2 &= Relu((-1)\cdot y_3 + (4) \cdot y_4 + 2)\\
     &= 2\\
 \end{aligned}
 $$
+
+# Question 4:
+
+<div align=center>
+    <img src ="img/CNN.png" width="600" height ="300"/>  
+</div>
+
+
+A small image on the left is convolved with a filter in the middle, to produce a feature map on the right.  The stride is 1.  What are the values of x1, x2, x5, and x6? What kind of “pattern” that this filter may be detecting (use this example to explain)? 
+
+$$
+\begin{aligned}
+x_1 &= -1 + 1 + 1 = 1\\
+x_2 &= 1 + 1 + 1 = 3\\
+
+x_5 &= -1 + -1 + -1 = -3\\
+x_6 &= -1 + -1 + -1 = -3\\
+\end{aligned}
+$$
