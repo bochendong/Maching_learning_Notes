@@ -188,7 +188,7 @@ First we decide the root node:
 
 $$
 \begin{aligned}
-Gain(N)=Gain(C) =Gain(R)  &= I(\frac{3}{6}, \frac{3}{6}) - (\frac{1}{2}I(\frac{2}{3}, \frac{1}{3}), \frac{1}{2}I(\frac{2}{3}, \frac{1}{3}))\\
+Gain(N)=Gain(C) =Gain(R)  &= I(\frac{3}{6}, \frac{3}{6}) - (\frac{3}{6}I(\frac{2}{3}, \frac{1}{3}), \frac{3}{6}I(\frac{2}{3}, \frac{1}{3}))\\
 &= 1 - I(\frac{2}{3}, \frac{1}{3})\\
 &= 0.081
 \end{aligned}
@@ -293,7 +293,9 @@ $$
 </div>
 
 
-A small image on the left is convolved with a filter in the middle, to produce a feature map on the right.  The stride is 1.  What are the values of x1, x2, x5, and x6? What kind of “pattern” that this filter may be detecting (use this example to explain)? 
+1. A small image on the left is convolved with a filter in the middle, to produce a feature map on the right.  The stride is 1.  What are the values of x1, x2, x5, and x6? What kind of “pattern” that this filter may be detecting (use this example to explain)? 
+   
+   This filter is going to detect a pattern which has values in middle line and bottom right but do not have have in other gird.
 
 $$
 \begin{aligned}
@@ -303,4 +305,32 @@ x_2 &= 1 + 1 + 1 = 3\\
 x_5 &= -1 + -1 + -1 = -3\\
 x_6 &= -1 + -1 + -1 = -3\\
 \end{aligned}
+$$
+
+
+
+1. Discuss the main differences between fully connected feedforward and convolutional neural networks.  
+   - A fully connected neural network consists of a series of fully connected layers that connect every neuron in one layer to every neuron in the other layer.
+   - A simple CNN is a sequence of layers, and every layer of a CNN transforms one volume of activations to another through a differentiable function. Three main types of layers are used to build CNN architecture: Convolutional Layer, Pooling Layer, and Fully-Connected Layer.
+
+
+2. Explain how to judge and prevent overfitting in training feedforward deep neural networks.
+   - To judge a overfitting, we can check the accuracy of the training set and validation set, if the accuracy on training set is less than the accuracy on validation set, then the overfitting occurs.
+   - To precent a overgitting, we can do early stop, data argumentation, dropout or add regularlization to over model.
+  
+3. You are asked to train a deep neural network to output a short English description (e.g., caption) for an image.  What training data would you need?  How would you pre-process the data before training the DNN? What high-level network architecture would you design? How would you evaluate your network? 
+
+
+$$
+\begin{aligned}
+  P(X \land Y) &= P(X|Y) P(Y) = P(Y|X) P(X)\\
+  P(X|Y) &= \frac{P(Y|X) \times P(X)}{P(Y)}\\
+  &= \frac{P(Y|X)  P(X)}{P(Y\wedge X) + P(Y\land \neg X) }\\
+  &= \frac{P(Y|X)  P(X)}{P(Y|X)P(X) + P(Y| \neg X)P(\neg X) }\\
+
+  P(C|x_1, \cdots, x_n) &= \alpha P(C) \prod_{i = 1}^n P(x_i| C)
+
+
+\end{aligned}
+
 $$
