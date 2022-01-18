@@ -1,5 +1,4 @@
 # Given the model of the world
-
 # Markov Processes
 
 - Markov Property
