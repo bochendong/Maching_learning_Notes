@@ -21,5 +21,12 @@ Atari game, the sky (i.e. drones, fighter jets), a text conversation (chatbots) 
 
 **Learning Rate**: Represented by the symbol $\alpha \in [0,1]$, learning rate is the weight on the most recent reward.
 
-**Policy**: Represented by the symbol $\pi$, policies are how agents choose their actions. An example policy might be “always choose the action that I think gives me the best reward RIGHT NOW.” Examples of policies from this week are epsilon-greedy and
-Upper-Confidence-Bound.
+**Policy**: Represented by the symbol $\pi$, policies are how agents choose their actions. An example policy might be “always choose the action that I think gives me the best reward RIGHT NOW.” Examples of policies from this week are epsilon-greedy and Upper-Confidence-Bound.
+
+**True Action Value**: Represented by the symbol $q^*$, these are the real underlying expected reward from actions. Actions have some hidden, stochastic reward generation process behind them, and $q^*$ is the expected reward from that process (e.g., the mean of a Gaussian).
+
+**Action-Value Estimate**: Represented by the symbol $q$, these are our estimate of $q^*$. When our agent first starts learning, its $q$ estimates can be very inaccurate and vary wildly, but with the right algorithm (e.g., sample averaging) they can be guaranteed to converge to $q^*$ (e.g. by the law of large numbers). 
+
+<div align=center>
+        <img src ="agent-inv-int.png" width="440" height ="200"/>
+</div>
