@@ -85,20 +85,13 @@ $$\begin{aligned}
     V(s) &= \mathbb{E}[G_t | s_t = s] \\
     &= \mathbb{E}[r_{t + 1} + \gamma r_{t + 2} + \gamma^2 r_{t + 3} + \cdots | S_t = s]\\
     &= \mathbb{E}[r_{t + 1} + \gamma G_{t+1}| S_t = s]\\
-    &= \mathbb{E}[r_{t + 1} + \gamma v(S_{t+1})| S_t = s]
+    &= \mathbb{E}[r_{t + 1} + \gamma V(S_{t+1})| S_t = s]
 \end{aligned}$$
-
--  $q$ is the action value function.
-$$\begin{aligned}
-q(s, a) &= \mathbb{E} [G_t | S_t = s, A_t = a]\\
-&= \mathbb{E}[r_{t + 1} + \gamma r_{t + 2} + \gamma^2 r_{t + 3} + \cdots | S_t = s, A_t = a]\\
-&= \mathbb{E}[r_{t + 1} + \gamma q(S_{t+1}, A_{t+1}) | S_t = s, A_t = a]
-\end{aligned}
-$$
 
 - Bellman equation:
 $$\begin{aligned}V(s) &= \underbrace{R(s)}_{\text{Immediate reward}} + \underbrace{\gamma \sum_{s^{\prime}\in S} P(s^{\prime} | s) V(s^{\prime})}_{\text{Discounted sum of future rewards}}\\
-  \begin{bmatrix}V(s_1) \\V(s_2) \\\vdots\\V(s_N)\end{bmatrix}&= \begin{bmatrix}R(s_1) \\R(s_2) \\\vdots\\R(s_N)\end{bmatrix} + \gamma\begin{bmatrix}
+  \begin{bmatrix}V(s_1) \\V(s_2) \\\vdots\\V(s_N)\end{bmatrix}&= 
+  \begin{bmatrix}R(s_1) \\R(s_2) \\\vdots\\R(s_N)\end{bmatrix} + \gamma\begin{bmatrix}
         p(s_1 | s_1) & p(s_2 | s_1) & \cdots & p(s_N | s_1)\\
         p(s_1 | s_2) & p(s_2 | s_2) & \cdots & p(s_N | s_2)\\
         \vdots       & \vdots       & \ddots & \vdots\\
@@ -111,7 +104,81 @@ $$\begin{aligned}V(s) &= \underbrace{R(s)}_{\text{Immediate reward}} + \underbra
         V & = (I - \gamma P)^{-1} R
   
   \end{aligned}$$
+-  $q$ is the action value function.
+$$\begin{aligned}
+q(s, a) &= \mathbb{E} [G_t | S_t = s, A_t = a]\\
+&= \mathbb{E}[r_{t + 1} + \gamma r_{t + 2} + \gamma^2 r_{t + 3} + \cdots | S_t = s, A_t = a]\\
+&= \mathbb{E}[r_{t + 1} + \gamma q(S_{t+1}, A_{t+1}) | S_t = s, A_t = a]
+\end{aligned}
+$$
 
+- Policies fully define the behaviour of an agent. Policies are how an agent chooses actions decides how to behave in each state.
+$$
+ \pi(a|s) = P(A_t = a| S_t = s) 
+$$
 
+- Bellman equation:
+  - $V_{\pi}(s)$: The expected discounted reward earned from the environment, if the agent **starts in state s and makes decisions according to policy $\pi$ thereafter**.
+  - $q_{\pi}(s, a)$: The expected discounted reward earned from the
+environment, if the agent **takes action a from state s and makes decisions according to policy π thereafter**.
 
+$$
+\begin{aligned}
+V_{\pi}(s) &= \sum_{a^{\prime} \in A} \pi(a^{\prime} | s) \cdot \sum_{s^{\prime} \in S} p(s^{\prime}, r | s, a^\prime) \cdot [r + \gamma V_{\pi}(s^\prime)]\\
+& = \sum_{a^{\prime} \in A} \pi(a^{\prime} | s) \cdot q_{\pi}(s, a)\\
 
+q_{\pi}(s, a) &= \sum_{s^{\prime} \in S} p(s^{\prime} | s, a) \cdot [r_{s, a} + \gamma \sum \pi(a^{\prime}| s^{\prime}) \cdot q_{\pi} (s^{\prime}, a^{\prime})]\\
+& = \sum_{s^{\prime} \in S} p(s^{\prime} | s, a)\cdot [r + \gamma V_{\pi}(s^{\prime})]
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+V_{\pi}(s)
+ & = 
+\sum_{a^{\prime} \in A}  P(a^{\prime} | s)
+\begin{bmatrix}
+p(s_1 | s_1, a^{\prime}) & p(s_2 | s_1, a^{\prime}) & \cdots & p(s_N | s_1, a^{\prime})
+\end{bmatrix}
+
+(
+\begin{bmatrix}
+R(s_1, a^{\prime})\\
+R(s_2, a^{\prime})\\
+\vdots\\
+R(s_N, a^{\prime})\\
+\end{bmatrix} + \gamma 
+\begin{bmatrix}
+V(s_1) \\
+V(s_2) \\
+\vdots \\
+V(s_N) 
+\end{bmatrix}
+)
+
+\end{aligned}
+$$
+
+- Example:
+<div align=center>
+        <img src ="32.png" width="400" height ="250"/>
+</div>
+
+$$
+\begin{aligned}
+V_{\pi}(s) = &0.5 * 0.1 * (1 + \gamma * 5.1) + 0.5 * 0.9 * (-2 + \gamma * -2.8)\\
+ &+ 0.5 * 0.3 * (5 - \gamma * 0.3) + \cdots
+\end{aligned}
+
+$$
+<div align=center>
+        <img src ="33.png" width="400" height ="250"/>
+</div>
+
+$$
+\begin{aligned}
+q_{\pi}(s, a) = &(0.5 \cdot [3 + \gamma (0.933 * 7.7 + 0.033 * 1.2 + 0.033 * 2.1)])\\
+& + 0.2 \cdot [-1 + \gamma(0.05 * 0.2 + 0.95 * 0.5)]\\
+& + 0.3 \cdot [1.5 + \gamma(0.95 * 3.4 + 0.05 * -9.2)]
+\end{aligned}
+$$
