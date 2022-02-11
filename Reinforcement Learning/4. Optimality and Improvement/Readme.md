@@ -18,3 +18,28 @@ v_{\pi}(s) &= \sum \pi(a|s) \cdot \sum p(s^{\prime}, r| s, a) \cdot [r + \gamma 
 q_{\pi}(s, a) &= \sum p(s^{\prime}| s,a) \cdot [r_{s^{\prime}, a} + \gamma \sum\pi(a^\prime | s^\prime) \cdot q_\pi(s^\prime, a^\prime)]
 \end{aligned}
 $$
+
+# Optimal Value Functions
+
+$$
+\begin{aligned}
+v^*(s) &= max_\pi v_\pi (s)\\
+q^*(s, a) &= max_\pi q_\pi (s ,a)
+\end{aligned}
+$$
+
+## Optimal Policies
+- There exist an optimal policy $\pi^*$, that is better than or equal to all other policies, $\pi^* > \pi$
+$$
+    \pi^{\prime} \geq \pi \text{ iff } v_{\pi^\prime} \geq v_\pi(s) \forall s
+$$
+
+- There is always a deterministic optimal policy $\pi^(a|s) = \argmax q^*(s, a)$
+- There can be more than one optimal policy, but all optimal policies share the same optimal value functions 
+  
+$$
+\begin{aligned}
+v_\pi^*(s) &= v^*(s) \\
+q_\pi^*(s, a) &= q^*(s, a)
+\end{aligned}
+$$
