@@ -43,3 +43,124 @@ v_\pi^*(s) &= v^*(s) \\
 q_\pi^*(s, a) &= q^*(s, a)
 \end{aligned}
 $$
+
+## Example:
+If we perform Uniform random policy:
+<div align=center>
+        <img src ="41.png" width="340" height ="220"/>
+</div>
+
+$$
+\begin{aligned}
+V(s) &= 0.5 * [0.1 * (1 + 0.7 * 5.1) + 0.9 * (-2 + 0.7 * -2.8)]\\
+&+ 0.5 * [0.3 * (5 + 0.7 * 0.3) + 0.2 * (3 + 0.7 * 9.7) + 0.5 *(-4 + 0.7 * 1.1)]
+
+\end{aligned}
+$$
+
+The optimal policy is:
+<div align=center>
+        <img src ="42.png" width="340" height ="220"/>
+</div>
+
+$$
+V^*(s) = 1 * [0.3 *(5 + 0.7 * 0.3) + 0.2 *(3 + 0.7 * 9.7) + 0.5 *(-4 + 0.5 * 1.1)]
+$$
+
+<div align=center>
+        <img src ="43.png" width="300" height ="220"/>
+</div>
+
+$$
+q_\pi(s, a) = 0.4 * (3 + 0.7 * 1.75) + 0.6 * (1.5 + 0.7 * 0.35)
+$$
+
+<div align=center>
+        <img src ="44.png" width="300" height ="220"/>
+</div>
+
+
+$$
+q^*_\pi(s, a) = 0.4 * (3 + 0.7 * 7.7) + 0.6 * (1.5 + 0.7 * 0.5)
+$$
+
+# Policy evaluation
+
+## State value function
+
+```python
+'''
+Input: pi, {S, P, R, gamma, A}, small positive number theta
+
+Initialize: An array V(s) = 0 for all s, delta = theta + 1
+'''
+
+while (delta > theta):
+    delta = 0
+
+    for s in S:
+        v = V(s)
+        V(s) = sum pi(a|s) * sum p(s_prime, r, | s, a) * [r + gamma v_pi(s_prime)]
+        delta = max(delta, |v - V(s)|)
+
+return V
+```
+
+## Action value function
+
+```python
+'''
+Input: pi, {S, P, R, gamma, A}, small positive number theta
+
+Initialize: An array Q(s,a) = 0 for all s, delta = theta + 1
+'''
+
+while (delta > theta):
+    delta = 0
+
+    for s in S and a in A:
+        q = Q(s, a)
+        Q(s, a) = sum p(s_prime, r, | s, a) * [r + gamma sum pi(a_prime | s_prime) * Q(s_prime, a_prime)]
+        delta = max(delta, |q - Q(s, a)|)
+
+return Q
+```
+
+# Policy Improvement
+## State value function
+```python
+for s in S:
+    old_action = pi(s)
+    pi(s) = argmax sum p(s_prime, r | s, a) * [r + gamma V(s_prime)]
+
+    if (old_action != pi(s))
+        policy_stable = False
+
+if (policy_stable):
+    return V, pi
+else:
+    policy_evaluation(pi)
+```
+
+
+## Action value function
+```python
+for s in S:
+    old_action = pi(s)
+    pi(s) = argmax Q(s, a)
+
+    if (old_action != pi(s))
+        policy_stable = False
+
+if (policy_stable):
+    return Q, pi
+else:
+    policy_evaluation(pi)
+```
+
+# The algorithm
+
+
+<div align=center>
+        <img src ="45.png" width="500" height ="260"/>
+</div>
