@@ -86,9 +86,22 @@ $$
 
 # Policy evaluation
 
+## Example:
+The nonterminal states are $S = \{1, 2, \cdots, 14\}$. There are four actions possible in each state, $A = \{up, down, right, left\}$, which deterministically cause the corresponding state transitions, except that actions that would take the agent off the grid in fact leave the state unchanged. Thus, for instance, $p(6|5, right) = 1$, $p(10|5, right) = 0$, and $p(7|7, right) = 1$. This is an undiscounted, episodic task. The reward is −1 on all transitions until the terminal state is reached. The terminal state is shaded in the figure (although it is shown in two places, it is formally one state). The expected reward function is thus $r(s, a, s0) = −1$ for all states $s$, $s_0$ and actions a. Suppose the agent follows the equiprobable random policy (all actions equally likely)
+
+<div align=center>
+        <img src ="47.png" width="400" height ="620"/>
+</div>
+
 ## State value function
 
+<div align=center>
+        <img src ="46.png" width="400" height ="220"/>
+</div>
+
+
 ```python
+
 '''
 Input: pi, {S, P, R, gamma, A}, small positive number theta
 
@@ -128,6 +141,10 @@ return Q
 
 # Policy Improvement
 ## State value function
+<div align=center>
+        <img src ="48.png" width="400" height ="350"/>
+</div>
+
 ```python
 for s in S:
     old_action = pi(s)
@@ -142,6 +159,11 @@ else:
     policy_evaluation(pi)
 ```
 
+Note: 
+
+This algorithm has a subtle bug, in that it may never terminate if the policy continually switches between two or more policies that are equally good. The bug
+can be fixed by adding additional flags, but it makes the pseudocode so ugly
+that it is not worth it
 
 ## Action value function
 ```python
@@ -162,5 +184,5 @@ else:
 
 
 <div align=center>
-        <img src ="45.png" width="500" height ="260"/>
+        <img src ="49.png" width="400" height ="220"/>
 </div>
