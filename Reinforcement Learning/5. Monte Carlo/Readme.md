@@ -28,7 +28,7 @@ It is easy to see that Monte Carlo ES cannot converge to any sub-optimal policy.
 </div>
 
 # Off policy
-Suppose now that all we have are episodes generated from a different policy. That is, suppose we wish to estimate vπ or qπ, but all we have are episodes following another policy μ, where μ ̸= π. We call π the target policy because learning its value function is the target of the learning process, and we call μ the behavior policy because it is the policy controlling the agent and generating behavior. The overall problem is called off-policy learning because it is learning about a policy given only experience “off” (not following) that policy.
+Suppose now that all we have are episodes generated from a different policy. That is, suppose we wish to estimate $v_π$ or $q_π$, but all we have are episodes following another policy $\mu$, where $\mu \neq π$. We call π the target policy because learning its value function is the target of the learning process, and we call $\mu$ the behavior policy because it is the policy controlling the agent and generating behavior. The overall problem is called off-policy learning because it is learning about a policy given only experience “off” (not following) that policy.
 <div align=center>
         <img src ="55.png" width="500" height ="320"/>
 </div>
