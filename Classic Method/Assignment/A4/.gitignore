@@ -1,0 +1,7 @@
+*.pyc
+*.DS_Store
+*.t7
+*.pth
+*.pdf
+cifar-10/*
+data/*
